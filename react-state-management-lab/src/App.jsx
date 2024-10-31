@@ -81,7 +81,10 @@ const App = () => {
 
   const handleAddFighter = (fighter) => {
     if (money >= fighter.price) {
-      
+      setTeam([...team, fighter])
+      setMoney(money - fighter.price)
+    } else {
+      alert('Not Enough Money')
     }
   }
 
@@ -90,7 +93,26 @@ const App = () => {
     <h1>Zombie Fighters</h1>
     <p>Team: {team.length}</p>
     <p>Money: ${money}</p>
+
+    <h2>Your Team</h2>
+    {team.length === 0 ? (
+      <p>Pick some team members!</p>
+    ) : (
+      <ul>
+        {team.map((fighter) => (
+         <li key={fighter.name}>
+          <img src={fighter.img} alt={fighter.name} />
+          <h3>{fighter.name}</h3>
+          <p>Price: ${fighter.price}</p>
+          <p>Strength: {fighter.strength}</p>
+          <p>Agility: {fighter.agility}</p>
+         </li> 
+        ))}
+      </ul>
+    )}
+    
     <h2>Fighters</h2>
+    
     <ul>
       {zombieFighters.map((fighter) => 
       <li key={fighter.name}>
@@ -105,7 +127,7 @@ const App = () => {
       )}
     </ul>
     </>
-  );
+  )
 }
 
 export default App
