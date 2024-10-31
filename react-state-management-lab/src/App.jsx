@@ -6,6 +6,7 @@ import './App.css'
 const App = () => {
   const [team, setTeam] = useState([])
   const [money, setMoney] = useState(100)
+  const [totalStrength, setTotalStrength] = useState[0]
   const [zombieFighters] = useState([
     {
       name: 'Survivor',
