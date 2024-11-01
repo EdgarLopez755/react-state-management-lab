@@ -1,12 +1,13 @@
 // src/App.jsx
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 
 
 const App = () => {
   const [team, setTeam] = useState([])
   const [money, setMoney] = useState(100)
-  const [totalStrength, setTotalStrength] = useState[0]
+  const [totalStrength, setTotalStrength] = useState(0)
+  const [totalAgility, setTotalAgility] = useState(0)
   const [zombieFighters] = useState([
     {
       name: 'Survivor',
@@ -89,11 +90,22 @@ const App = () => {
     }
   }
 
+  const addTotalStrength = () => {
+    const total = team.reduce((acc, fighter) => acc + fighter.strength, 0)
+    setTotalStrength(total);
+  }
+
+  useEffect(() => {
+    addTotalStrength()
+  }, [team])
+
+
   return (
     <>
     <h1>Zombie Fighters</h1>
     <p>Team: {team.length}</p>
     <p>Money: ${money}</p>
+    <p>Total Strength: {totalStrength}</p>
 
     <h2>Your Team</h2>
     {team.length === 0 ? (
