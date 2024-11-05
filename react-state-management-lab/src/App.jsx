@@ -99,6 +99,16 @@ const App = () => {
     addTotalStrength()
   }, [team])
 
+  const addTotalAgility = () => {
+    const total = team.reduce((acc, fighter) => acc + fighter.agility, 0)
+    setTotalAgility(total)
+  }
+
+  useEffect(() => {
+    addTotalAgility()
+  }, [team])
+
+
 
   return (
     <>
@@ -106,6 +116,7 @@ const App = () => {
     <p>Team: {team.length}</p>
     <p>Money: ${money}</p>
     <p>Total Strength: {totalStrength}</p>
+    <p>Total Agility: {totalAgility}</p>
 
     <h2>Your Team</h2>
     {team.length === 0 ? (
